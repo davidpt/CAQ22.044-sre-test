@@ -9,134 +9,138 @@ resource "aws_vpc" "my_vpc" {
   tags = merge({ Name = join("-", [var.Name, "vpc"]) }, var.Tags)
 }
 
+#public subnets are created first and private second
 resource "aws_subnet" "my_subnet" {
   count             = var.N_subnets
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = cidrsubnet(var.Network_CIDR, 4, "${count.index}")
+  cidr_block        = cidrsubnet(var.Network_CIDR, 4, count.index)
   availability_zone = "eu-west-1a"
 
-  tags = merge({ Name = join("-", [var.Name, "subnet", "${count.index}"]) }, var.Tags)
+  tags = merge({ Name = join("-", [var.Name, "subnet", count.index + 1]) }, var.Tags)
 }
 
-# resource "aws_internet_gateway" "my_gateway" {
-#   vpc_id = aws_vpc.my_vpc.id
+resource "aws_nat_gateway" "my-nat-gw" {
+  #same logic for the 0 index. We want the elastic ip of the first public subnet
+  allocation_id = aws_eip.my-eip-natgw.id
+  connectivity_type = "public"
+  #we will place our nat gateway inside the first public subnet. Its index will always be 0
+  #and we know at least one will always be created
+  subnet_id     = aws_subnet.my_subnet[0].id
 
-#   tags = {
-#     Name = "my-gateway"
-#   }
-# }
+  tags = merge({ Name = join("-", [var.Name, "nat-gateway"]) }, var.Tags)
+}
 
-# resource "aws_route_table" "my_route_table" {
-#   vpc_id = aws_vpc.my_vpc.id
+resource "aws_internet_gateway" "my-igw" {
+  vpc_id = aws_vpc.my_vpc.id
 
-#   route {
-#     cidr_block = "0.0.0.0/0"
-#     gateway_id = aws_internet_gateway.my_gateway.id
-#   }
+  tags = merge({ Name = join("-", [var.Name, "internet-gateway"]) }, var.Tags)
+}
 
-#   route {
-#     ipv6_cidr_block        = "::/0"
-#     gateway_id = aws_internet_gateway.my_gateway.id
-#   }
+resource "aws_route_table" "rt_public_sn" {
+  vpc_id = aws_vpc.my_vpc.id
 
-#   tags = {
-#     Name = "my-route-table"
-#   }
-# }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.my-igw.id
+  }
 
-# resource "aws_subnet" "my_subnet" {
-#   vpc_id            = aws_vpc.my_vpc.id
-#   cidr_block        = "10.0.1.0/24"
-#   availability_zone = "us-east-1a"
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id      = aws_internet_gateway.my-igw.id
+  }
 
-#   tags = {
-#     Name = "my-subnet"
-#   }
-# }
+  tags = merge({ Name = join("-", [var.Name, "rt-public"]) }, var.Tags)
+}
 
-# resource "aws_route_table_association" "my_rt_association" {
-#   subnet_id      = aws_subnet.my_subnet.id
-#   route_table_id = aws_route_table.my_route_table.id
-# }
+resource "aws_route_table_association" "my_public_rt_association" {
+  #only half the subnets are public and thus have their traffic routed to the internet gateway
+  #this makes them able to access the internet and being accessed from the internet
+  count = length(aws_subnet.my_subnet) / 2
 
-# resource "aws_security_group" "allow_web" {
-#   name        = "allow-web-traffic"
-#   description = "Allow web traffic"
-#   vpc_id      = aws_vpc.my_vpc.id
+  subnet_id      = aws_subnet.my_subnet[count.index].id
+  route_table_id = aws_route_table.rt_public_sn.id
+}
 
-#   ingress {
-#     description = "HTTPS"
-#     from_port   = 443
-#     to_port     = 443
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+resource "aws_route_table" "rt_private_sn" {
+  vpc_id = aws_vpc.my_vpc.id
 
-#   ingress {
-#     description = "HTTP"
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.my-nat-gw.id
+  }
 
-#   ingress {
-#     description = "SSH"
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  # route {
+  #   ipv6_cidr_block = "::/0"
+  #   gateway_id      = aws_internet_gateway.my-igw.id
+  # }
 
-#   egress {
-#     from_port        = 0
-#     to_port          = 0
-#     protocol         = "-1"
-#     cidr_blocks      = ["0.0.0.0/0"]
-#     ipv6_cidr_blocks = ["::/0"]
-#   }
+  tags = merge({ Name = join("-", [var.Name, "rt-private"]) }, var.Tags)
+}
 
-#   tags = {
-#     Name = "allow-web"
-#   }
-# }
+resource "aws_route_table_association" "my_private_rt_association" {
+  #only half the subnets private. They access the internet through the NAT gateway placed in a public subnet
+  #but they can not be accessed from the internet
+  count = length(aws_subnet.my_subnet) / 2
 
-# resource "aws_network_interface" "my_nic" {
-#   subnet_id       = aws_subnet.my_subnet.id
-#   private_ips     = ["10.0.1.50"]
-#   security_groups = [aws_security_group.allow_web.id]
-# }
+  subnet_id      = aws_subnet.my_subnet[length(aws_subnet.my_subnet) / 2 + count.index].id
+  route_table_id = aws_route_table.rt_private_sn.id
+}
 
-# resource "aws_eip" "one" {
-#   vpc                       = true
-#   network_interface         = aws_network_interface.my_nic.id
-#   associate_with_private_ip = "10.0.1.50"
-#   depends_on                = [aws_internet_gateway.my_gateway]
-# }
+resource "aws_security_group" "allow_web" {
+  #security group name
+  name        = join("-", [var.Name, "allow-web-traffic"])
+  description = "Allow web traffic and ssh connection"
+  vpc_id      = aws_vpc.my_vpc.id
 
-# resource "aws_instance" "my-web-server" {
-#   ami               = "ami-08c40ec9ead489470"
-#   instance_type     = "t2.micro"
-#   availability_zone = "us-east-1a"
-#   key_name          = "my-key"
-#   network_interface {
-#     device_index = 0
-#     network_interface_id = aws_network_interface.my_nic.id
-#   }
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   user_data = <<EOF
-#               #!/bin/bash
-#               sudo apt update -y
-#               sudo apt install apache2 -y
-#               sudo systemctl start apache2
-#               sudo bash -c 'echo your very first web server > /var/www/html/index.html'
-#               EOF
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   tags = {
-#     Name = "ubuntu"
-#   }
-# }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
 
-# output "web_server_public_ip" {
-#   value = aws_eip.one.public_ip
-# }
+  tags = merge({ Name = join("-", [var.Name, "sec-group-allow-web"]) }, var.Tags)
+}
+
+resource "aws_network_interface" "my_nic" {
+  count = length(aws_subnet.my_subnet) / 2
+
+  subnet_id       = aws_subnet.my_subnet[count.index].id
+  security_groups = [aws_security_group.allow_web.id]
+
+  tags = merge({ Name = join("-", [var.Name, "my-nic"]) }, var.Tags)
+}
+
+#this could be declared in the beginning since it's a dependency for creating the nat gateway
+#but terraform knows this and solves this by creating it first
+resource "aws_eip" "my-eip-igw" {
+  count             = length(aws_subnet.my_subnet) / 2
+  vpc               = true
+  network_interface = aws_network_interface.my_nic[count.index].id
+  #associate_with_private_ip = aws_network_interface.my_nic.private_ip
+  depends_on = [aws_internet_gateway.my-igw]
+}
+
+resource "aws_eip" "my-eip-natgw" {
+  vpc               = true
+  # network_interface = aws_network_interface.my_nic[count.index].id
+  #associate_with_private_ip = aws_network_interface.my_nic.private_ip
+  depends_on = [aws_internet_gateway.my-igw]
+}
