@@ -19,6 +19,7 @@ module "Network" {
   Tags         = var.tags
 }
 
+#not implemented
 # module "Golden_Image" {
 #   source       = "./modules/Golden_Image"
 # }
@@ -32,25 +33,23 @@ module "Instances" {
 }
 
 output "Private_instances_IP_addresses" {
-  value = "Private_instances_IP_addresses"
-
-  # value {
-  #   "instance1"     = module.network.Network
-  # }
+  value = module.Instances.Private_Instances_IP_addresses
 }
 
 output "Bastion_Host_IP" {
-  value = "Bastion_Host_IP"
+  value = module.Instances.Bastion_Host_IP_address
 }
 
 output "SSH_key_content" {
-  value = "SSH_key_content"
+  sensitive = true
+  value = module.Instances.SSH_key_Content
 }
 
-output "Load_balancer_HTTP_Content" {
-  value = "Load_balancer_HTTP_Content"
-}
+#not implemented
+# output "Load_balancer_HTTP_Content" {
+#   value = "Load_balancer_HTTP_Content"
+# }
 
 output "Usernames" {
-  value = "Usernames"
+  value = module.Instances.Usernames
 }

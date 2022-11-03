@@ -6,7 +6,7 @@ variable "Network" {
 
 # variable "Image" {
 #   type        = module.Golden_Image.output.Manifest
-#   description = "Set the total subnets to create inside the VPC"
+#   description = "set the Golden Image to be used on the attached Instances on private subnets (not for bastion host)"
 # }
 
 variable "Name" {
