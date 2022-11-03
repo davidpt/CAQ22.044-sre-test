@@ -12,7 +12,7 @@ Dependencies:
 - make
 
 ## By executing make apply the project will:
-- create the infrastructure requested in the exercise. A total of 17 resources are created
+- Create the infrastructure requested in the exercise. A total of 17 resources are created
 - As output you will get:
   - the IP of the bastion host
   - IP addresses of the private instances
