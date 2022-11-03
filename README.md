@@ -1,7 +1,5 @@
-# galp-sre-test
-Site Reliability Engineering Test for galp
-
-<img src="https://www.galp.com/corp/Portals/0/logo-galp.png?ver=2021-06-02-152241-290" width=20% height=20%>
+# CAQ 22.044 | Site Reliability Engineer
+Site Reliability Engineering Test
 
 Notes: 
 - Execute make apply and make destroy on a linux environment
