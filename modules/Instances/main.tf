@@ -52,7 +52,7 @@ resource "aws_instance" "private-host" {
   root_block_device {
     volume_size = "10"
   }
-  
+
   tags = merge({ Name = join("-", [var.Name, "private-host", count.index + 1]) }, var.Tags)
 }
 
@@ -99,6 +99,14 @@ resource "aws_security_group" "sg_private_host" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${aws_instance.bastion-host.private_ip}/32"]
+  }
+
+  ingress {
+    description = "ICMP"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
