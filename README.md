@@ -9,7 +9,7 @@ Dependencies:
 - terraform
 - make
 
-By executing make apply the project will:
+## By executing make apply the project will:
 - create the infrastructure requested in the exercise. A total of 17 resources are created
 - As output you will get:
   - the IP of the bastion host
@@ -21,3 +21,6 @@ By executing make apply the project will:
 - The private key will be added to ssh-agent to allow ssh forwarding
 - In the end, it should all be set so that the user can connect to the bastion host with: ssh -A username@bastion_host_ip
 - From the bastion host, the user can access the private instances and verify that the private instances have access to the internet through the NAT gateway
+
+## By executing make destroy the project will:
+- Destroy the infrastructure created previously
