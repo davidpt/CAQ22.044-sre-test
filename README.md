@@ -1,6 +1,8 @@
 # galp-sre-test
 Site Reliability Engineering Test for galp
 
+<img src="https://www.galp.com/corp/Portals/0/logo-galp.png?ver=2021-06-02-152241-290" width=20% height=20%>
+
 Notes: 
 - Execute make apply and make destroy on a linux environment
 - Before executing make sure that you have your credentials set correctly as environment variables
