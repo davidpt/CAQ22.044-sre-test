@@ -31,5 +31,3 @@ override.tf.json
 #ignore the manifest file created by running the packer build
 packer/*.json
 packer/*.lock
-
-.terraform.lock.hcl
