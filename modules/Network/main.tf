@@ -3,6 +3,10 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+locals {
+  num_half_subnets = length(aws_subnet.my_subnet) / 2
+}
+
 resource "aws_vpc" "my_vpc" {
   cidr_block           = var.Network_CIDR
   enable_dns_hostnames = true
@@ -65,7 +69,7 @@ resource "aws_route_table" "rt_public_sn" {
 resource "aws_route_table_association" "my_public_rt_association" {
   #only half the subnets are public and thus have their traffic routed to the internet gateway
   #this makes them able to access the internet and being accessed from the internet
-  count = length(aws_subnet.my_subnet) / 2
+  count = local.num_half_subnets
 
   subnet_id      = aws_subnet.my_subnet[count.index].id
   route_table_id = aws_route_table.rt_public_sn.id
@@ -95,8 +99,8 @@ resource "aws_route_table" "rt_private_sn" {
 resource "aws_route_table_association" "my_private_rt_association" {
   #only half the subnets private. They access the internet through the NAT gateway placed in a public subnet
   #but they can not be accessed from the internet
-  count = length(aws_subnet.my_subnet) / 2
+  count = local.num_half_subnets
 
-  subnet_id      = aws_subnet.my_subnet[length(aws_subnet.my_subnet) / 2 + count.index].id
+  subnet_id      = aws_subnet.my_subnet[local.num_half_subnets + count.index].id
   route_table_id = aws_route_table.rt_private_sn.id
 }

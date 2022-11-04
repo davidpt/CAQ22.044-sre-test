@@ -4,10 +4,10 @@ variable "Network" {
   description = "To set where the instances must be attached"
 }
 
-# variable "Image" {
-#   type        = module.Golden_Image.output.Manifest
-#   description = "set the Golden Image to be used on the attached Instances on private subnets (not for bastion host)"
-# }
+variable "Image" {
+  type        = any
+  description = "set the Golden Image to be used on the attached Instances on private subnets (not for bastion host)"
+}
 
 variable "Name" {
   type        = string

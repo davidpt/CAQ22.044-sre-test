@@ -10,6 +10,9 @@ variable "name" {
 variable "tags" {
   description = "Tags to be set on resources that support them"
 }
+variable "manif_path" {
+  description = "Tags to be set on resources that support them"
+}
 
 module "Network" {
   source       = "./modules/Network"
@@ -19,15 +22,15 @@ module "Network" {
   Tags         = var.tags
 }
 
-#not implemented
-# module "Golden_Image" {
-#   source       = "./modules/Golden_Image"
-# }
+module "Golden_Image" {
+  source       = "./modules/Golden_Image"
+  Manifest_path = var.manif_path
+}
 
 module "Instances" {
   source  = "./modules/Instances"
   Network = module.Network.Network
-  # Image = module.Golden_Image.output.Manifest
+  Image = module.Golden_Image.Manifest
   Name = var.name
   Tags = var.tags
 }
@@ -42,13 +45,13 @@ output "Bastion_Host_IP" {
 
 output "SSH_key_content" {
   sensitive = true
-  value = module.Instances.SSH_key_Content
+  value = module.Instances.SSH_key_content
 }
 
 #not implemented
-# output "Load_balancer_HTTP_Content" {
-#   value = "Load_balancer_HTTP_Content"
-# }
+output "Load_balancer_HTTP_Content" {
+  value = "Load_balancer_HTTP_Content"
+}
 
 output "Usernames" {
   value = module.Instances.Usernames

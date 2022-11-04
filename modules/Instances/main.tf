@@ -3,9 +3,10 @@ provider "aws" {
   region = "eu-west-1"
 }
 
-#TODO: I repeat a lot of times the following statement
-#If possible, I should assign the result to a local variable and reuse it
-#length(var.Network["SUBNETS"]) / 2
+locals {
+  num_half_subnets = length(var.Network["SUBNETS"]) / 2
+  golden_image_AMI = regex("^[^:]*:(.*)$", var.Image.builds[0].artifact_id)[0] # AMI originated from the packer build
+}
 
 resource "tls_private_key" "key" {
   algorithm = "RSA"
@@ -30,7 +31,7 @@ resource "aws_instance" "bastion-host" {
   security_groups         = [aws_security_group.sg_bastion_host.id]
   key_name                = aws_key_pair.my-kp.key_name
   disable_api_termination = false
-  ebs_optimized           = false
+  # ebs_optimized           = false
   root_block_device {
     volume_size = "10"
   }
@@ -41,14 +42,14 @@ resource "aws_instance" "bastion-host" {
 #create an instance for every private subnet
 resource "aws_instance" "private-host" {
   #half of the networks are private
-  count                   = length(var.Network["SUBNETS"]) / 2
+  count                   = local.num_half_subnets
   instance_type           = "t2.micro"
-  ami                     = "ami-096800910c1b781ba" # Ubuntu Server 22.04 LTS (HVM), SSD Volume Type
-  subnet_id               = var.Network["SUBNETS"][length(var.Network["SUBNETS"]) / 2 + count.index].id
+  ami                     = local.golden_image_AMI
+  subnet_id               = var.Network["SUBNETS"][local.num_half_subnets + count.index].id
   security_groups         = [aws_security_group.sg_private_host.id]
   key_name                = aws_key_pair.my-kp.key_name
   disable_api_termination = false
-  ebs_optimized           = false
+  # ebs_optimized           = false
   root_block_device {
     volume_size = "10"
   }
@@ -74,6 +75,14 @@ resource "aws_security_group" "sg_bastion_host" {
     protocol    = "tcp"
     #https://stackoverflow.com/questions/46763287/i-want-to-identify-the-public-ip-of-the-terraform-execution-environment-and-add
     cidr_blocks = ["${chomp(data.http.myip.response_body)}/32"]
+  }
+
+  ingress {
+    description = "ICMP"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

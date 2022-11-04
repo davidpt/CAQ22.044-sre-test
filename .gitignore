@@ -27,3 +27,9 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+#ignore the manifest file created by running the packer build
+packer/*.json
+packer/*.lock
+
+.terraform.lock.hcl

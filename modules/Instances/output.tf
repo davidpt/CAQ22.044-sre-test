@@ -11,11 +11,11 @@ output "Load_balancer_HTTP_DNS" {
   value = "Load_balancer_HTTP_DNS"
 }
 
-output "SSH_key_Content" {
+output "SSH_key_content" {
   value = tls_private_key.key.private_key_pem
 }
 
 output "Usernames" {
-  #it works because all AMIs selected use the same username but this does not fulfill the goal of the exercise
-  value = "ubuntu"
+  #The same username is used between the bastion host and the golden image used in the private instances
+  value = var.Image.builds[0].name
 }
