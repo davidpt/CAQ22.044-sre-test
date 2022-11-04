@@ -6,8 +6,9 @@ Notes:
 - Before executing make sure that you have your credentials set correctly as environment variables
 
 Dependencies:
-- terraform
 - make
+- packer
+- terraform
 
 ## By executing make apply the project will:
 - Create the infrastructure requested in the exercise. A total of 17 resources are created
