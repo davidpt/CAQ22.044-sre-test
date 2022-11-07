@@ -47,6 +47,5 @@ build {
     ]
   }
 
-  #by default the manifest is written to packer-manifest.json
   post-processor "manifest" {}
 }

@@ -25,3 +25,9 @@ Dependencies:
 
 ## By executing make destroy the project will:
 - Destroy the infrastructure created previously
+
+## A caveat
+- While the Makefile functions as requested, if you run it twice in a row some errors are bound to happen  
+  - From the start, Packer will not create the AMI since the name selected is the same)
+  - Another consequent error relates to the SSH key, the second time the scrit is run the key already exists and you have no permissions to write (due to the chmod 400 required for ssh connection)
+  - Another consequent error occurs if the user changes the name of the AMI to advance to a new execution of the Makefile. This will add the build info to the packer-manifest.json file. However, the script reads the instance 0 - the one that was added first to the file

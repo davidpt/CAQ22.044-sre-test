@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 locals {
-  num_half_subnets = length(aws_subnet.my_subnet) / 2
+  num_half_subnets = var.N_subnets / 2
 }
 
 resource "aws_vpc" "my_vpc" {
@@ -14,12 +14,19 @@ resource "aws_vpc" "my_vpc" {
   tags                 = merge({ Name = join("-", [var.Name, "vpc"]) }, var.Tags)
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 #public subnets are created first and private second
 resource "aws_subnet" "my_subnet" {
-  count             = var.N_subnets
-  vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = cidrsubnet(var.Network_CIDR, 4, count.index)
-  availability_zone = "eu-west-1a"
+  count      = var.N_subnets
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = cidrsubnet(var.Network_CIDR, 4, count.index)
+
+  #availability_zone = "eu-west-1a"
+  #we have three AZ available. The first public and private subnet will be placed on AZ 0, the second on AZ 1 and third on AZ 2
+  availability_zone = data.aws_availability_zones.available.names[count.index >= local.num_half_subnets ? count.index - local.num_half_subnets : count.index]
 
   tags = merge({ Name = join("-", [var.Name, "subnet", count.index + 1]) }, var.Tags)
 }
@@ -80,7 +87,7 @@ resource "aws_route_table" "rt_private_sn" {
   vpc_id = aws_vpc.my_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.my-nat-gw.id
   }
 

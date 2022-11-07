@@ -6,9 +6,9 @@ output "Bastion_Host_IP_address" {
   value = aws_eip.bastion-host-eip.public_ip
 }
 
-#not implemented
 output "Load_balancer_HTTP_DNS" {
-  value = "Load_balancer_HTTP_DNS"
+  #acessing the 0 index due to the count parameter used
+  value = local.create_load_balancer ? aws_lb.load-balancer[0].dns_name : "Creating an ALB requires two private subnets in distinct AZs"
 }
 
 output "SSH_key_content" {

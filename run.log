@@ -1,0 +1,1392 @@
+david@Phanteks:/mnt/c/Users/David/Documents/REPO/galp-sre-test$ make apply
+building AMI
+packer init .
+packer build --var Name="aws-linux-ami-priv-img" .
+my-packer-build.amazon-ebs.ubuntu: output will be in this color.
+
+==> my-packer-build.amazon-ebs.ubuntu: Prevalidating any provided VPC information
+==> my-packer-build.amazon-ebs.ubuntu: Prevalidating AMI Name: aws-linux-ami-priv-img
+    my-packer-build.amazon-ebs.ubuntu: Found Image ID: ami-0f29c8402f8cce65c
+==> my-packer-build.amazon-ebs.ubuntu: Creating temporary keypair: packer_63659a3f-a18f-395f-167a-2b8d91a8f378
+==> my-packer-build.amazon-ebs.ubuntu: Creating temporary security group for this instance: packer_63659a41-ea4c-eae4-4247-39433f3ee37d
+==> my-packer-build.amazon-ebs.ubuntu: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+==> my-packer-build.amazon-ebs.ubuntu: Launching a source AWS instance...
+    my-packer-build.amazon-ebs.ubuntu: Instance ID: i-0bd8c69e062d499d3
+==> my-packer-build.amazon-ebs.ubuntu: Waiting for instance (i-0bd8c69e062d499d3) to become ready...
+==> my-packer-build.amazon-ebs.ubuntu: Using SSH communicator to connect: 3.249.142.69
+==> my-packer-build.amazon-ebs.ubuntu: Waiting for SSH to become available...
+==> my-packer-build.amazon-ebs.ubuntu: Connected to SSH!
+==> my-packer-build.amazon-ebs.ubuntu: Provisioning with shell script: /tmp/packer-shell2723250661
+==> my-packer-build.amazon-ebs.ubuntu:
+==> my-packer-build.amazon-ebs.ubuntu: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+==> my-packer-build.amazon-ebs.ubuntu:
+    my-packer-build.amazon-ebs.ubuntu: Hit:1 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial InRelease
+    my-packer-build.amazon-ebs.ubuntu: Get:2 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates InRelease [99.8 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:3 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-backports InRelease [97.4 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:4 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/universe amd64 Packages [7,532 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:5 http://security.ubuntu.com/ubuntu xenial-security InRelease [99.8 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:6 https://esm.ubuntu.com/infra/ubuntu xenial-infra-security InRelease [7,524 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:7 https://esm.ubuntu.com/infra/ubuntu xenial-infra-updates InRelease [7,475 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:8 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/universe Translation-en [4,354 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:9 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [144 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:10 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/multiverse Translation-en [106 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:11 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [2,049 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:12 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main Translation-en [461 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:13 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [1,219 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:14 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/universe Translation-en [358 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:15 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [22.6 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:16 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/multiverse Translation-en [8,476 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:17 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [9,812 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:18 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-backports/main Translation-en [4,456 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:19 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [11.3 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:20 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-backports/universe Translation-en [4,476 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:21 https://esm.ubuntu.com/infra/ubuntu xenial-infra-security/main amd64 Packages [572 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:22 http://security.ubuntu.com/ubuntu xenial-security/main Translation-en [360 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:23 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [785 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:24 http://security.ubuntu.com/ubuntu xenial-security/universe Translation-en [225 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:25 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [7,864 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:26 http://security.ubuntu.com/ubuntu xenial-security/multiverse Translation-en [2,672 B]
+    my-packer-build.amazon-ebs.ubuntu: Fetched 18.5 MB in 4s (4,418 kB/s)
+    my-packer-build.amazon-ebs.ubuntu: Reading package lists...
+    my-packer-build.amazon-ebs.ubuntu: Building dependency tree...
+    my-packer-build.amazon-ebs.ubuntu: Reading state information...
+    my-packer-build.amazon-ebs.ubuntu: 1 package can be upgraded. Run 'apt list --upgradable' to see it.
+==> my-packer-build.amazon-ebs.ubuntu:
+==> my-packer-build.amazon-ebs.ubuntu: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+==> my-packer-build.amazon-ebs.ubuntu:
+    my-packer-build.amazon-ebs.ubuntu: Reading package lists...
+    my-packer-build.amazon-ebs.ubuntu: Building dependency tree...
+    my-packer-build.amazon-ebs.ubuntu: Reading state information...
+    my-packer-build.amazon-ebs.ubuntu: The following additional packages will be installed:
+    my-packer-build.amazon-ebs.ubuntu:   apache2-bin apache2-data apache2-utils libapr1 libaprutil1
+    my-packer-build.amazon-ebs.ubuntu:   libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.1-0 ssl-cert
+    my-packer-build.amazon-ebs.ubuntu: Suggested packages:
+    my-packer-build.amazon-ebs.ubuntu:   www-browser apache2-doc apache2-suexec-pristine | apache2-suexec-custom
+    my-packer-build.amazon-ebs.ubuntu:   openssl-blacklist
+    my-packer-build.amazon-ebs.ubuntu: The following NEW packages will be installed:
+    my-packer-build.amazon-ebs.ubuntu:   apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1
+    my-packer-build.amazon-ebs.ubuntu:   libaprutil1-dbd-sqlite3 libaprutil1-ldap liblua5.1-0 ssl-cert
+    my-packer-build.amazon-ebs.ubuntu: 0 upgraded, 10 newly installed, 0 to remove and 1 not upgraded.
+    my-packer-build.amazon-ebs.ubuntu: Need to get 1,559 kB of archives.
+    my-packer-build.amazon-ebs.ubuntu: After this operation, 6,448 kB of additional disk space will be used.
+    my-packer-build.amazon-ebs.ubuntu: Get:1 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libapr1 amd64 1.5.2-3 [86.0 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:2 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libaprutil1 amd64 1.5.4-1build1 [77.1 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:3 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libaprutil1-dbd-sqlite3 amd64 1.5.4-1build1 [10.6 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:4 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libaprutil1-ldap amd64 1.5.4-1build1 [8,720 B]
+    my-packer-build.amazon-ebs.ubuntu: Get:5 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 liblua5.1-0 amd64 5.1.5-8ubuntu1 [102 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:6 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 apache2-bin amd64 2.4.18-2ubuntu3.17 [927 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:7 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 apache2-utils amd64 2.4.18-2ubuntu3.17 [81.9 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:8 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 apache2-data all 2.4.18-2ubuntu3.17 [162 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:9 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 apache2 amd64 2.4.18-2ubuntu3.17 [86.8 kB]
+    my-packer-build.amazon-ebs.ubuntu: Get:10 http://eu-west-1.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 ssl-cert all 1.0.37 [16.9 kB]
+==> my-packer-build.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Dialog
+==> my-packer-build.amazon-ebs.ubuntu: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+==> my-packer-build.amazon-ebs.ubuntu: debconf: falling back to frontend: Readline
+==> my-packer-build.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Readline
+==> my-packer-build.amazon-ebs.ubuntu: debconf: (This frontend requires a controlling tty.)
+==> my-packer-build.amazon-ebs.ubuntu: debconf: falling back to frontend: Teletype
+==> my-packer-build.amazon-ebs.ubuntu: dpkg-preconfigure: unable to re-open stdin:
+    my-packer-build.amazon-ebs.ubuntu: Fetched 1,559 kB in 0s (38.3 MB/s)
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package libapr1:amd64.
+    my-packer-build.amazon-ebs.ubuntu: (Reading database ... 51560 files and directories currently installed.)
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../libapr1_1.5.2-3_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking libapr1:amd64 (1.5.2-3) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package libaprutil1:amd64.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../libaprutil1_1.5.4-1build1_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking libaprutil1:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package libaprutil1-dbd-sqlite3:amd64.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../libaprutil1-dbd-sqlite3_1.5.4-1build1_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking libaprutil1-dbd-sqlite3:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package libaprutil1-ldap:amd64.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../libaprutil1-ldap_1.5.4-1build1_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking libaprutil1-ldap:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package liblua5.1-0:amd64.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../liblua5.1-0_5.1.5-8ubuntu1_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking liblua5.1-0:amd64 (5.1.5-8ubuntu1) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package apache2-bin.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../apache2-bin_2.4.18-2ubuntu3.17_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking apache2-bin (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package apache2-utils.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../apache2-utils_2.4.18-2ubuntu3.17_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking apache2-utils (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package apache2-data.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../apache2-data_2.4.18-2ubuntu3.17_all.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking apache2-data (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package apache2.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../apache2_2.4.18-2ubuntu3.17_amd64.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking apache2 (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Selecting previously unselected package ssl-cert.
+    my-packer-build.amazon-ebs.ubuntu: Preparing to unpack .../ssl-cert_1.0.37_all.deb ...
+    my-packer-build.amazon-ebs.ubuntu: Unpacking ssl-cert (1.0.37) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for libc-bin (2.23-0ubuntu11.3) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for man-db (2.7.5-1) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for ufw (0.35-0ubuntu2) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for ureadahead (0.100.0-19.1) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for systemd (229-4ubuntu21.31) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up libapr1:amd64 (1.5.2-3) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up libaprutil1:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up libaprutil1-dbd-sqlite3:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up libaprutil1-ldap:amd64 (1.5.4-1build1) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up liblua5.1-0:amd64 (5.1.5-8ubuntu1) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up apache2-bin (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up apache2-utils (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up apache2-data (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Setting up apache2 (2.4.18-2ubuntu3.17) ...
+    my-packer-build.amazon-ebs.ubuntu: Enabling module mpm_event.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module authz_core.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module authz_host.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module authn_core.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module auth_basic.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module access_compat.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module authn_file.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module authz_user.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module alias.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module dir.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module autoindex.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module env.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module mime.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module negotiation.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module setenvif.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module filter.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module deflate.
+    my-packer-build.amazon-ebs.ubuntu: Enabling module status.
+    my-packer-build.amazon-ebs.ubuntu: Enabling conf charset.
+    my-packer-build.amazon-ebs.ubuntu: Enabling conf localized-error-pages.
+    my-packer-build.amazon-ebs.ubuntu: Enabling conf other-vhosts-access-log.
+    my-packer-build.amazon-ebs.ubuntu: Enabling conf security.
+    my-packer-build.amazon-ebs.ubuntu: Enabling conf serve-cgi-bin.
+    my-packer-build.amazon-ebs.ubuntu: Enabling site 000-default.
+    my-packer-build.amazon-ebs.ubuntu: Setting up ssl-cert (1.0.37) ...
+    my-packer-build.amazon-ebs.ubuntu: debconf: unable to initialize frontend: Dialog
+    my-packer-build.amazon-ebs.ubuntu: debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)
+    my-packer-build.amazon-ebs.ubuntu: debconf: falling back to frontend: Readline
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for libc-bin (2.23-0ubuntu11.3) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for ureadahead (0.100.0-19.1) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for systemd (229-4ubuntu21.31) ...
+    my-packer-build.amazon-ebs.ubuntu: Processing triggers for ufw (0.35-0ubuntu2) ...
+==> my-packer-build.amazon-ebs.ubuntu: Stopping the source instance...
+    my-packer-build.amazon-ebs.ubuntu: Stopping instance
+==> my-packer-build.amazon-ebs.ubuntu: Waiting for the instance to stop...
+==> my-packer-build.amazon-ebs.ubuntu: Creating AMI aws-linux-ami-priv-img from instance i-0bd8c69e062d499d3
+    my-packer-build.amazon-ebs.ubuntu: AMI: ami-07069357fa1c75dda
+==> my-packer-build.amazon-ebs.ubuntu: Waiting for AMI to become ready...
+==> my-packer-build.amazon-ebs.ubuntu: Skipping Enable AMI deprecation...
+==> my-packer-build.amazon-ebs.ubuntu: Terminating the source AWS instance...
+==> my-packer-build.amazon-ebs.ubuntu: Cleaning up any extra volumes...
+==> my-packer-build.amazon-ebs.ubuntu: No volumes to clean up, skipping
+==> my-packer-build.amazon-ebs.ubuntu: Deleting temporary security group...
+==> my-packer-build.amazon-ebs.ubuntu: Deleting temporary keypair...
+==> my-packer-build.amazon-ebs.ubuntu: Running post-processor:  (type manifest)
+Build 'my-packer-build.amazon-ebs.ubuntu' finished after 3 minutes 30 seconds.
+
+==> Wait completed after 3 minutes 30 seconds
+
+==> Builds finished. The artifacts of successful builds are:
+--> my-packer-build.amazon-ebs.ubuntu: AMIs were created:
+eu-west-1: ami-07069357fa1c75dda
+
+--> my-packer-build.amazon-ebs.ubuntu: AMIs were created:
+eu-west-1: ami-07069357fa1c75dda
+
+terraform init
+Initializing modules...
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/http from the dependency lock file
+- Reusing previous version of hashicorp/tls from the dependency lock file
+- Using previously-installed hashicorp/tls v4.0.4
+- Using previously-installed hashicorp/aws v4.38.0
+- Using previously-installed hashicorp/http v3.2.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+creating all infrastructure
+terraform apply -auto-approve
+module.Instances.data.http.myip: Reading...
+module.Instances.data.http.myip: Read complete after 0s [id=http://ipv4.icanhazip.com]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.Instances.aws_eip.bastion-host-eip will be created
+  + resource "aws_eip" "bastion-host-eip" {
+      + allocation_id        = (known after apply)
+      + association_id       = (known after apply)
+      + carrier_ip           = (known after apply)
+      + customer_owned_ip    = (known after apply)
+      + domain               = (known after apply)
+      + id                   = (known after apply)
+      + instance             = (known after apply)
+      + network_border_group = (known after apply)
+      + network_interface    = (known after apply)
+      + private_dns          = (known after apply)
+      + private_ip           = (known after apply)
+      + public_dns           = (known after apply)
+      + public_ip            = (known after apply)
+      + public_ipv4_pool     = (known after apply)
+      + tags_all             = (known after apply)
+      + vpc                  = true
+    }
+
+  # module.Instances.aws_instance.bastion-host will be created
+  + resource "aws_instance" "bastion-host" {
+      + ami                                  = "ami-096800910c1b781ba"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = false
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "golden-ticket"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-bastion-host"
+        }
+      + tags_all                             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-bastion-host"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.Instances.aws_instance.private-host[0] will be created
+  + resource "aws_instance" "private-host" {
+      + ami                                  = "ami-07069357fa1c75dda"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = false
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "golden-ticket"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-1"
+        }
+      + tags_all                             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-1"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.Instances.aws_instance.private-host[1] will be created
+  + resource "aws_instance" "private-host" {
+      + ami                                  = "ami-07069357fa1c75dda"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = false
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "golden-ticket"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-2"
+        }
+      + tags_all                             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-2"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.Instances.aws_instance.private-host[2] will be created
+  + resource "aws_instance" "private-host" {
+      + ami                                  = "ami-07069357fa1c75dda"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = false
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "golden-ticket"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-3"
+        }
+      + tags_all                             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-private-host-3"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + capacity_reservation_specification {
+          + capacity_reservation_preference = (known after apply)
+
+          + capacity_reservation_target {
+              + capacity_reservation_id                 = (known after apply)
+              + capacity_reservation_resource_group_arn = (known after apply)
+            }
+        }
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply)
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + tags                  = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = (known after apply)
+        }
+
+      + enclave_options {
+          + enabled = (known after apply)
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + maintenance_options {
+          + auto_recovery = (known after apply)
+        }
+
+      + metadata_options {
+          + http_endpoint               = (known after apply)
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = (known after apply)
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply)
+          + device_index          = (known after apply)
+          + network_card_index    = (known after apply)
+          + network_interface_id  = (known after apply)
+        }
+
+      + private_dns_name_options {
+          + enable_resource_name_dns_a_record    = (known after apply)
+          + enable_resource_name_dns_aaaa_record = (known after apply)
+          + hostname_type                        = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = (known after apply)
+        }
+    }
+
+  # module.Instances.aws_key_pair.my-kp will be created
+  + resource "aws_key_pair" "my-kp" {
+      + arn             = (known after apply)
+      + fingerprint     = (known after apply)
+      + id              = (known after apply)
+      + key_name        = "golden-ticket"
+      + key_name_prefix = (known after apply)
+      + key_pair_id     = (known after apply)
+      + key_type        = (known after apply)
+      + public_key      = (known after apply)
+      + tags_all        = (known after apply)
+    }
+
+  # module.Instances.aws_security_group.sg_bastion_host will be created
+  + resource "aws_security_group" "sg_bastion_host" {
+      + arn                    = (known after apply)
+      + description            = "Allow ssh connection to bastion host"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "ICMP"
+              + from_port        = -1
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "icmp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = -1
+            },
+          + {
+              + cidr_blocks      = [
+                  + "5.249.11.125/32",
+                ]
+              + description      = "SSH"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+        ]
+      + name                   = "galp-exercise-sg-bastion-host"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-sec-group-bastion-host"
+        }
+      + tags_all               = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-sec-group-bastion-host"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.Instances.aws_security_group.sg_private_host will be created
+  + resource "aws_security_group" "sg_private_host" {
+      + arn                    = (known after apply)
+      + description            = "Allow ssh connection from bastion host"
+      + egress                 = [
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = ""
+              + from_port        = 0
+              + ipv6_cidr_blocks = [
+                  + "::/0",
+                ]
+              + prefix_list_ids  = []
+              + protocol         = "-1"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 0
+            },
+        ]
+      + id                     = (known after apply)
+      + ingress                = [
+          + {
+              + cidr_blocks      = (known after apply)
+              + description      = "SSH"
+              + from_port        = 22
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "tcp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = 22
+            },
+          + {
+              + cidr_blocks      = [
+                  + "0.0.0.0/0",
+                ]
+              + description      = "ICMP"
+              + from_port        = -1
+              + ipv6_cidr_blocks = []
+              + prefix_list_ids  = []
+              + protocol         = "icmp"
+              + security_groups  = []
+              + self             = false
+              + to_port          = -1
+            },
+        ]
+      + name                   = "galp-exercise-sg-private-host"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-sec-group-private-host"
+        }
+      + tags_all               = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-sec-group-private-host"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.Instances.tls_private_key.key will be created
+  + resource "tls_private_key" "key" {
+      + algorithm                     = "RSA"
+      + ecdsa_curve                   = "P224"
+      + id                            = (known after apply)
+      + private_key_openssh           = (sensitive value)
+      + private_key_pem               = (sensitive value)
+      + private_key_pem_pkcs8         = (sensitive value)
+      + public_key_fingerprint_md5    = (known after apply)
+      + public_key_fingerprint_sha256 = (known after apply)
+      + public_key_openssh            = (known after apply)
+      + public_key_pem                = (known after apply)
+      + rsa_bits                      = 4096
+    }
+
+  # module.Network.aws_eip.my-eip-natgw will be created
+  + resource "aws_eip" "my-eip-natgw" {
+      + allocation_id        = (known after apply)
+      + association_id       = (known after apply)
+      + carrier_ip           = (known after apply)
+      + customer_owned_ip    = (known after apply)
+      + domain               = (known after apply)
+      + id                   = (known after apply)
+      + instance             = (known after apply)
+      + network_border_group = (known after apply)
+      + network_interface    = (known after apply)
+      + private_dns          = (known after apply)
+      + private_ip           = (known after apply)
+      + public_dns           = (known after apply)
+      + public_ip            = (known after apply)
+      + public_ipv4_pool     = (known after apply)
+      + tags_all             = (known after apply)
+      + vpc                  = true
+    }
+
+  # module.Network.aws_internet_gateway.my-igw will be created
+  + resource "aws_internet_gateway" "my-igw" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + tags     = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-internet-gateway"
+        }
+      + tags_all = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-internet-gateway"
+        }
+      + vpc_id   = (known after apply)
+    }
+
+  # module.Network.aws_nat_gateway.my-nat-gw will be created
+  + resource "aws_nat_gateway" "my-nat-gw" {
+      + allocation_id        = (known after apply)
+      + connectivity_type    = "public"
+      + id                   = (known after apply)
+      + network_interface_id = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+      + tags                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-nat-gateway"
+        }
+      + tags_all             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-nat-gateway"
+        }
+    }
+
+  # module.Network.aws_route_table.rt_private_sn will be created
+  + resource "aws_route_table" "rt_private_sn" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = ""
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = (known after apply)
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-rt-private"
+        }
+      + tags_all         = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-rt-private"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.Network.aws_route_table.rt_public_sn will be created
+  + resource "aws_route_table" "rt_public_sn" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = [
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = ""
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = "::/0"
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+          + {
+              + carrier_gateway_id         = ""
+              + cidr_block                 = "0.0.0.0/0"
+              + core_network_arn           = ""
+              + destination_prefix_list_id = ""
+              + egress_only_gateway_id     = ""
+              + gateway_id                 = (known after apply)
+              + instance_id                = ""
+              + ipv6_cidr_block            = ""
+              + local_gateway_id           = ""
+              + nat_gateway_id             = ""
+              + network_interface_id       = ""
+              + transit_gateway_id         = ""
+              + vpc_endpoint_id            = ""
+              + vpc_peering_connection_id  = ""
+            },
+        ]
+      + tags             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-rt-public"
+        }
+      + tags_all         = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-rt-public"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_private_rt_association[0] will be created
+  + resource "aws_route_table_association" "my_private_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_private_rt_association[1] will be created
+  + resource "aws_route_table_association" "my_private_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_private_rt_association[2] will be created
+  + resource "aws_route_table_association" "my_private_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_public_rt_association[0] will be created
+  + resource "aws_route_table_association" "my_public_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_public_rt_association[1] will be created
+  + resource "aws_route_table_association" "my_public_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_route_table_association.my_public_rt_association[2] will be created
+  + resource "aws_route_table_association" "my_public_rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[0] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.0.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-1"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-1"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[1] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-2"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-2"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[2] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.2.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-3"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-3"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[3] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.3.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-4"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-4"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[4] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.4.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-5"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-5"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_subnet.my_subnet[5] will be created
+  + resource "aws_subnet" "my_subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "eu-west-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.0.5.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-6"
+        }
+      + tags_all                                       = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-subnet-6"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.Network.aws_vpc.my_vpc will be created
+  + resource "aws_vpc" "my_vpc" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.0.0.0/20"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = true
+      + enable_dns_support                   = true
+      + enable_network_address_usage_metrics = (known after apply)
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-vpc"
+        }
+      + tags_all                             = {
+          + "Contractor" = "Softinsa"
+          + "Developer"  = "David"
+          + "Name"       = "galp-exercise-vpc"
+        }
+    }
+
+Plan: 27 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + Bastion_Host_IP                = (known after apply)
+  + Load_balancer_HTTP_Content     = "Load_balancer_HTTP_Content"
+  + Private_instances_IP_addresses = [
+      + (known after apply),
+      + (known after apply),
+      + (known after apply),
+    ]
+  + SSH_key_content                = (sensitive value)
+  + Usernames                      = "ubuntu"
+module.Instances.tls_private_key.key: Creating...
+module.Network.aws_vpc.my_vpc: Creating...
+module.Instances.tls_private_key.key: Creation complete after 1s [id=63a27336513dbceff26b70649683907110905cbe]
+module.Instances.aws_key_pair.my-kp: Creating...
+module.Instances.aws_key_pair.my-kp: Creation complete after 0s [id=golden-ticket]
+module.Network.aws_vpc.my_vpc: Still creating... [10s elapsed]
+module.Network.aws_vpc.my_vpc: Creation complete after 12s [id=vpc-0f631f15021cb7a12]
+module.Network.aws_internet_gateway.my-igw: Creating...
+module.Network.aws_subnet.my_subnet[4]: Creating...
+module.Network.aws_subnet.my_subnet[0]: Creating...
+module.Network.aws_subnet.my_subnet[2]: Creating...
+module.Network.aws_subnet.my_subnet[5]: Creating...
+module.Network.aws_subnet.my_subnet[1]: Creating...
+module.Network.aws_subnet.my_subnet[3]: Creating...
+module.Network.aws_subnet.my_subnet[3]: Creation complete after 1s [id=subnet-03af65b32bfd4ef8c]
+module.Network.aws_internet_gateway.my-igw: Creation complete after 1s [id=igw-0abf3556149c7248d]
+module.Network.aws_eip.my-eip-natgw: Creating...
+module.Network.aws_route_table.rt_public_sn: Creating...
+module.Network.aws_subnet.my_subnet[2]: Creation complete after 1s [id=subnet-01b269116dea1b9a1]
+module.Network.aws_subnet.my_subnet[5]: Creation complete after 1s [id=subnet-02dec09c05f21f01b]
+module.Network.aws_subnet.my_subnet[4]: Creation complete after 1s [id=subnet-0b9c99f3384445d1f]
+module.Network.aws_subnet.my_subnet[1]: Creation complete after 1s [id=subnet-070833298d23d2c30]
+module.Network.aws_subnet.my_subnet[0]: Creation complete after 1s [id=subnet-074ff9e8d09d38ae8]
+module.Instances.aws_security_group.sg_bastion_host: Creating...
+module.Network.aws_eip.my-eip-natgw: Creation complete after 0s [id=eipalloc-0d36364275f287533]
+module.Network.aws_nat_gateway.my-nat-gw: Creating...
+module.Network.aws_route_table.rt_public_sn: Creation complete after 1s [id=rtb-0e16457435bb7517c]
+module.Network.aws_route_table_association.my_public_rt_association[2]: Creating...
+module.Network.aws_route_table_association.my_public_rt_association[0]: Creating...
+module.Network.aws_route_table_association.my_public_rt_association[1]: Creating...
+module.Network.aws_route_table_association.my_public_rt_association[1]: Creation complete after 0s [id=rtbassoc-0026b6d9f19b88391]
+module.Network.aws_route_table_association.my_public_rt_association[0]: Creation complete after 0s [id=rtbassoc-079ee757611fe8eac]
+module.Network.aws_route_table_association.my_public_rt_association[2]: Creation complete after 1s [id=rtbassoc-0f018c0556faf1316]
+module.Instances.aws_security_group.sg_bastion_host: Creation complete after 2s [id=sg-0274723fa56af0226]
+module.Instances.aws_instance.bastion-host: Creating...
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [10s elapsed]
+module.Instances.aws_instance.bastion-host: Still creating... [10s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [20s elapsed]
+module.Instances.aws_instance.bastion-host: Still creating... [20s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [30s elapsed]
+module.Instances.aws_instance.bastion-host: Still creating... [30s elapsed]
+module.Instances.aws_instance.bastion-host: Creation complete after 32s [id=i-03b7e9c8c2e0956ae]
+module.Instances.aws_eip.bastion-host-eip: Creating...
+module.Instances.aws_security_group.sg_private_host: Creating...
+module.Instances.aws_eip.bastion-host-eip: Creation complete after 2s [id=eipalloc-0e3aebbd83aec9c50]
+module.Instances.aws_security_group.sg_private_host: Creation complete after 3s [id=sg-098c97ec63b98cfe2]
+module.Instances.aws_instance.private-host[1]: Creating...
+module.Instances.aws_instance.private-host[0]: Creating...
+module.Instances.aws_instance.private-host[2]: Creating...
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [40s elapsed]
+module.Instances.aws_instance.private-host[0]: Still creating... [10s elapsed]
+module.Instances.aws_instance.private-host[1]: Still creating... [10s elapsed]
+module.Instances.aws_instance.private-host[2]: Still creating... [10s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [50s elapsed]
+module.Instances.aws_instance.private-host[1]: Still creating... [20s elapsed]
+module.Instances.aws_instance.private-host[0]: Still creating... [20s elapsed]
+module.Instances.aws_instance.private-host[2]: Still creating... [20s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [1m0s elapsed]
+module.Instances.aws_instance.private-host[1]: Still creating... [30s elapsed]
+module.Instances.aws_instance.private-host[0]: Still creating... [30s elapsed]
+module.Instances.aws_instance.private-host[2]: Still creating... [30s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [1m10s elapsed]
+module.Instances.aws_instance.private-host[0]: Still creating... [40s elapsed]
+module.Instances.aws_instance.private-host[1]: Still creating... [40s elapsed]
+module.Instances.aws_instance.private-host[2]: Still creating... [40s elapsed]
+module.Instances.aws_instance.private-host[2]: Creation complete after 42s [id=i-013ee002bc650a37d]
+module.Network.aws_nat_gateway.my-nat-gw: Still creating... [1m20s elapsed]
+module.Network.aws_nat_gateway.my-nat-gw: Creation complete after 1m25s [id=nat-0d0d0238b4f3cd3b9]
+module.Network.aws_route_table.rt_private_sn: Creating...
+module.Network.aws_route_table.rt_private_sn: Creation complete after 1s [id=rtb-087b9af7dfe9c2219]
+module.Network.aws_route_table_association.my_private_rt_association[0]: Creating...
+module.Network.aws_route_table_association.my_private_rt_association[1]: Creating...
+module.Network.aws_route_table_association.my_private_rt_association[2]: Creating...
+module.Network.aws_route_table_association.my_private_rt_association[0]: Creation complete after 0s [id=rtbassoc-01d8a09c219e98372]
+module.Network.aws_route_table_association.my_private_rt_association[1]: Creation complete after 0s [id=rtbassoc-094e2deb94c380eb1]
+module.Network.aws_route_table_association.my_private_rt_association[2]: Creation complete after 1s [id=rtbassoc-00694a3c93bfd8021]
+module.Instances.aws_instance.private-host[0]: Still creating... [50s elapsed]
+module.Instances.aws_instance.private-host[1]: Still creating... [50s elapsed]
+module.Instances.aws_instance.private-host[1]: Creation complete after 52s [id=i-00b91ba0bbec483ca]
+module.Instances.aws_instance.private-host[0]: Creation complete after 52s [id=i-0181819a48e3f5784]
+
+Apply complete! Resources: 27 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+Bastion_Host_IP = "18.203.31.129"
+Load_balancer_HTTP_Content = "Load_balancer_HTTP_Content"
+Private_instances_IP_addresses = [
+  "10.0.3.204",
+  "10.0.4.246",
+  "10.0.5.67",
+]
+SSH_key_content = <sensitive>
+Usernames = "ubuntu"
+saving the private key
+terraform output SSH_key_content > ~/.ssh/golden-ticket.pem
+chmod 400 ~/.ssh/golden-ticket.pem

@@ -28,6 +28,8 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 
-#ignore the manifest file created by running the packer build
-packer/*.json
-packer/*.lock
+#ignore the manifest files created by running the packer build
+packer-manifest.*
+
+#a small script just for setting the user credentials to access aws. Obviously not included in the repo
+credentials.sh

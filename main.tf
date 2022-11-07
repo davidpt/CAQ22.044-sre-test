@@ -48,9 +48,8 @@ output "SSH_key_content" {
   value = module.Instances.SSH_key_content
 }
 
-#not implemented
 output "Load_balancer_HTTP_Content" {
-  value = "Load_balancer_HTTP_Content"
+  value = module.Instances.Load_balancer_HTTP_DNS
 }
 
 output "Usernames" {
